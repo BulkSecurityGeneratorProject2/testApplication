@@ -1,0 +1,68 @@
+entity Order {
+	  orderNumber String,
+      orderNumberOracle String,
+      invoiceNumber String,
+     salesmanId String,
+      accountId String,
+      customerName String,
+      customerInfo String,
+      orderStatus String,
+      deliveryDate Date,
+      poNumber String,
+      billingAddressId String,
+      shippingAddressId String,
+      discount BigDecimal,
+      taxValue BigDecimal,
+      taxAmount BigDecimal,
+      priceGroup String,
+      totalOderQty BigDecimal,
+      totalOrderItems Integer,
+      subTotalAmount BigDecimal,
+      totalAmount BigDecimal,
+      orderDate Date,
+      paymentStatus String,
+     outstandingPayment BigDecimal,
+      paymentTerms String,
+     dueDate Date,
+     daysOverdue Integer,
+      note String,
+      extraInfo String,
+      createdDate Date,
+      createdBy String,
+      updatedDate Date,
+      updatedBy String,
+      deleteFlag Boolean
+}
+
+entity OrderDetail{
+	
+      itemLineNumber String,
+    lineType String,
+    sku String,
+    description String,
+    quantity BigDecimal ,
+    deliveredQty BigDecimal ,
+     cancelledQty BigDecimal ,
+     packType String,
+     unitPrice BigDecimal ,
+     sellingPrice BigDecimal ,
+     status String,
+     subTotal BigDecimal ,
+     totalAmount BigDecimal ,
+    promotionApplied String,
+    discountPercent BigDecimal ,
+     discountPrice BigDecimal ,
+    note String
+}
+
+
+relationship OneToMany {
+	Order{orderDetail} to OrderDetail{order}
+}
+
+// Set pagination options
+paginate Order, OrderDetail with pagination
+
+dto * with mapstruct
+// Set service options to all except few
+service all with serviceImpl
